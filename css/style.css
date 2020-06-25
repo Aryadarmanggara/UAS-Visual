@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: viga;
+}
+
+.no-padding{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.sidebar{
+    width: 100%;
+    padding: 2px 0;
+    background-color: #ff68a7;
+    height: 100vh;
+}
+
+.sidebar-content{
+    width: 100%;
+    padding: 2px 0;
+    margin-top: 30%;
+}
+
+.sidebar-content img{
+    max-width: 100%;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.content{
+    width: 100%;
+    padding: 2px 0;
+    background-color: #f1f1f1;
+    height: 100vh;
+}
+
+.card-title{
+    color: #333;
+}
+
+.title-content{
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: #ff68a7;
+    padding: 10px 0 10px 0;
+    margin-top: -5px;
+    box-shadow: 1px 2px 2px 1px rgba(0,0,0,.5);
+}
+
+.color-card-footer{
+    background-color: #0096b5;
+    cursor: pointer;
+}
+
+/* .color-text-muted{
+    color: #fff !important;
+} */
+
+.scroll{
+    overflow: auto;
+}
+
+.fprofile {
+    width: 450px;
+    height: 350px;
+}
+@media screen and (max-width: 850px)
+{
+
+    .content{
+        background-color: #fff;
+    }
+
+    .a{
+        display: block;
+    }
+}

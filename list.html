@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Rental Mr.Bulu</title>
+</head>
+<body>
+    <div class="container">
+        <br>
+        <h1 class="text-center" style="font-weight: normal;">- Data Rental -</h1>
+        <br>
+        
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nama Mobil</th>
+                <th scope="col">Tanggal Sewa</th>
+                <th scope="col">Tanggal berakhir</th>
+                <th scope="col">Nama Penyewa</th>
+                <th scope="col">Email Penyewa</th>
+                <th scope="col">Kontak Penyewa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="carName"></td>
+                <td id="tgl"></td>
+                <td id="dateEnd"></td>
+                <td id="name"></td>
+                <td id="email"></td>
+                <td id="contact"></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        ipcRenderer.send("appointment:request:list");
+
+        ipcRenderer.on("appointment:response:list", (event, appointments) => {
+            const listDiv = document.getElementById("carName")
+            appointments.forEach(appointment => {
+                const appointmentDiv = document.createElement("div");
+
+                const TypeCarParagraph = document.createElement("p");
+                TypeCarParagraph.innerHTML = `${appointment.TypeCar}`;
+
+                appointmentDiv.appendChild(TypeCarParagraph);
+
+                listDiv.append(appointmentDiv);
+        });
+    });
+
+    ipcRenderer.on("appointment:response:list", (event, appointments) => {
+            const listDiv = document.getElementById("tgl")
+            appointments.forEach(appointment => {
+                const appointmentDiv = document.createElement("div");
+                
+                const dateParagraph = document.createElement("p");
+                dateParagraph.innerHTML = `${appointment.date}`;
+
+                appointmentDiv.appendChild(dateParagraph);
+
+                listDiv.append(appointmentDiv);
+        });
+    });
+
+    ipcRenderer.on("appointment:response:list", (event, appointments) => {
+            const listDiv = document.getElementById("dateEnd")
+            appointments.forEach(appointment => {
+                const appointmentDiv = document.createElement("div");
+
+                const dateEndParagraph = document.createElement("p");
+                dateEndParagraph.innerHTML = `${appointment.dateEnd}`;
+
+                appointmentDiv.appendChild(dateEndParagraph);
+
+                listDiv.append(appointmentDiv);
+        });
+    });
+
+    ipcRenderer.on("appointment:response:list", (event, appointments) => {
+            const listDiv = document.getElementById("name")
+            appointments.forEach(appointment => {
+                const appointmentDiv = document.createElement("div");
+
+                const nameParagraph = document.createElement("p");
+                nameParagraph.innerHTML = `${appointment.name}`;
+                
+                appointmentDiv.appendChild(nameParagraph);
+
+                listDiv.append(appointmentDiv);
+        });
+    });
+
+    ipcRenderer.on("appointment:response:list", (event, appointments) => {
+            const listDiv = document.getElementById("email")
+            appointments.forEach(appointment => {
+                const appointmentDiv = document.createElement("div");
+                
+                const emailParagraph = document.createElement("p");
+                emailParagraph.innerHTML = `${appointment.email}`;
+                
+                appointmentDiv.appendChild(emailParagraph);
+
+                listDiv.append(appointmentDiv);
+        });
+    });
+
+    ipcRenderer.on("appointment:response:list", (event, appointments) => {
+            const listDiv = document.getElementById("contact")
+            appointments.forEach(appointment => {
+                const appointmentDiv = document.createElement("div");
+
+                const nohpParagraph = document.createElement("p");
+                nohpParagraph.innerHTML = `${appointment.nohp}`;
+                
+                appointmentDiv.appendChild(nohpParagraph);
+
+                listDiv.append(appointmentDiv);
+        });
+    });
+    </script>
+</body>
+</html>

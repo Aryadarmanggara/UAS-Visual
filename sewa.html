@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Rental Mr.Bulu</title>
+</head>
+<body>
+
+    <div class="container my-5">
+
+        <form NAME="joe">
+            <INPUT TYPE="hidden" NAME="TypeCar">
+        </form>
+
+        <form name="bull" id="form">
+            <h2 class="text-center">Data Sewa</h2>
+            <br>
+            <div class="form-group">
+                <label for="nama-mobil">Nama Mobil</label>
+                <input type="text" class="form-control" id="nama-mobil" name="TypeCar" readonly>
+            </div>
+            <div class="form-group">
+                <label for="date">Tanggal Sewa</label>
+                <input type="date" class="form-control" id="date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="dateEnd">Tanggal Berakhir</label>
+                <input type="date" class="form-control" id="dateEnd" name="dateEnd">
+            </div>
+            <br><hr><br>
+            <h2 class="text-center">Data Diri Penyewa Mobil</h2>
+            <br>
+            <div class="form-group">
+                <label for="name">Nama Penyewa</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="nohp">No Telephone</label>
+                <input type="tel" class="form-control" id="nohp" name="nohp">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg">Pesan Sekarang</button>
+        </form>
+
+    </div>
+        
+<!-- script -->
+    <script language="javascript">
+    
+        var locate = window.location
+        document.joe.TypeCar.value = locate
+    
+        var text = document.joe.TypeCar.value
+    
+        function delineate(str)
+        {
+        theleft = str.indexOf("=") + 1;
+        return(str.substring(theleft));
+        }
+    
+        var zork = delineate(text)
+        document.bull.TypeCar.value = zork
+    
+        // create
+        const electron = require("electron");
+        const {
+            ipcRenderer
+        } = electron;
+
+        const form = document.getElementById("form");
+        const elements = {};
+
+        form.addEventListener("submit", event => {
+            event.preventDefault();
+
+            for (let i=0; i < form.elements.length; i++)
+            {
+                if(form.elements[i].type !== "submit")
+                    elements[form.elements[i].name] = form.elements[i].value;
+            }
+            ipcRenderer.send("appointment:create", elements);
+        });
+
+    </script>
+    
+</body>
+</html>
